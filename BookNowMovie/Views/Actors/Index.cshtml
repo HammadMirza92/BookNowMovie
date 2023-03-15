@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewData["Title"] = "Actors";
+}
+
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Profile Image</th>
+                <th>Actor Name</th>
+                <th>Bio</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                <td class="align-middle">
+                        <img src="@item.ProfilePictureUrl" class="actorImg fn_profileImage" />
+                </td>
+                <td class="align-middle">
+                        <p class="fn-actorName" id="my-paragraph">@item.FullName</p>
+                </td>
+                <td class="align-middle">
+                        <p class="fn-actorBio">@item.Bio</p>
+                </td>
+
+                <td class="align-middle">
+                       
+                    <a class="btn btn-primary actionBtn" onclick="showUserDetails(@item.Id)"> <i class="fa fa-edit actionBtnIcon"></i> Edit</a>
+                    <a class="btn btn-warning actionBtn" onclick="viewActorDetails(@item.Id)"> <i class="fa fa-info actionBtnIcon"></i> Detail</a>
+                    <a class="btn btn-danger actionBtn"  asp-controller="Actors" asp-action="Delete" asp-route-Id="@item.Id"> <i class="fa fa-trash actionBtnIcon"></i> Delete</a>
+                </td>
+
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+</div>
+<a class="btn btn-success createFloatingBtn" onclick="createActor()"><i class="fa fa-plus-square"></i>Add Actor</a>
+
+
+<!-- Edit Actor Modal -->
+<div class="modal fade" id="userDetailsModal" tabindex="-1" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Actor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+          
+        </div>
+    </div>
+</div>
+
+
+<!-- Add New Actor Modal -->
+<div class="modal fade" id="createActorModal" tabindex="-1" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Actor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="createActorModal-body">
+                ...
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- View Actor Modal -->
+<div class="modal fade" id="viewActorDetailsModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">View Actor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="viewActorDetailsModal-body">
+                ...
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+    function showUserDetails(userId) {
+        var modal = $('#userDetailsModal');
+        var modalBody = modal.find('.modal-body');
+        
+        $.ajax({
+            url: '/Actors/EditActor',
+            data: { Id: userId },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+    function createActor() {
+        var modal = $('#createActorModal');
+        var modalBody = modal.find('.createActorModal-body');
+
+        $.ajax({
+            url: '/Actors/Create',
+            data: { },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+    function viewActorDetails(userId) {
+        var modal = $('#viewActorDetailsModal');
+        var modalBody = modal.find('.viewActorDetailsModal-body');
+
+        $.ajax({
+            url: '/Actors/GetActorById',
+            data: { Id: userId },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+</script>
+
+
+
+

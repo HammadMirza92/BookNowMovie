@@ -1,0 +1,51 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+.actorImg{
+    width:80px;
+    height:80px;
+    border-radius:80px;
+}
+.actionBtn{
+    margin-right:10px;
+}
+.actionBtnIcon {
+    margin-right: 5px;
+}
+.movieImg{
+    height:auto;
+    width:140px;
+    border-radius:10px
+}
+.cardLayout{
+    margin: 10px;
+    margin-top: 20px;
+}
+.fa{
+    margin-right:5px;
+}
+.btn{
+    margin-right:10px;
+    margin-left:10px;
+}
+.createFloatingBtn{
+    position:fixed;
+    bottom:30px;
+    right:10px;
+    z-index:1;
+}
