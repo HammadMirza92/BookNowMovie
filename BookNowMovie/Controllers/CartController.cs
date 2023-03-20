@@ -107,9 +107,10 @@ namespace BookNowMovie.Controllers
                
 
             }
+            return RedirectToAction("Index");
 
-            return View();
-            
+            /*  return View();*/
+
         }
 
         public async Task<IActionResult> checkout()
