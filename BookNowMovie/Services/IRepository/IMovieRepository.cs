@@ -5,6 +5,6 @@ namespace BookNowMovie.Services.IRepository
 {
     public interface IMovieRepository :IBaseRepository<Movie>
     {
-     
+        public Task UpdateStock(int id, int stock);
     }
 }

@@ -19,5 +19,15 @@ namespace BookNowMovie.Services.Repository
             var entities = await _context.Movies.Include(x=> x.Cinemas).ToListAsync();
             return entities;
         }
+
+        public async Task UpdateStock(int id , int stock)
+        {
+            var rt = await _context.Movies.Where(x=> x.Id == id).FirstAsync();
+
+            rt.Stock = rt.Stock - stock;
+
+            _context.Movies.Update(rt);
+            _context.SaveChangesAsync();
+        }
     }
 }

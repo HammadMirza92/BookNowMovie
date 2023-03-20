@@ -38,6 +38,7 @@ namespace BookNowMovie.Controllers
                 {
                     CartId = check.CartId,
                     MovieName = check.MovieName,
+                    MovieId = movie.Id,
                     Quantity = check.Quantity + 1,
                     Price = check.Price + movie.Price,
                     Active = true
@@ -50,6 +51,7 @@ namespace BookNowMovie.Controllers
                 Cart item = new Cart()
                 {
                     MovieName = movie.Name,
+                    MovieId = movie.Id,
                     Quantity = 1,
                     Price = movie.Price,
                     Active = true
@@ -88,10 +90,13 @@ namespace BookNowMovie.Controllers
                         OrderDetail orderDetail = new OrderDetail()
                         {
                             OrderId = cnrtOrder.Id,
-                            Movie = item.MovieName
+                            MovieId = item.MovieId,
+                            MovieName = item.MovieName,
+                            Quantity = item.Quantity,
                         };
 
                         await _orderDetailRepository.Add(orderDetail);
+                        _movieRepository.UpdateStock(item.MovieId, item.Quantity);
                         _cartRepository.Delete(item.CartId);
                     }
                 }
