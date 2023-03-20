@@ -45,14 +45,10 @@
 <a class="btn btn-success createFloatingBtn" onclick="createActor()"><i class="fa fa-plus-square"></i>Add Actor</a>
 
 
-<!-- Edit Actor Modal -->
-<div class="modal fade" id="userDetailsModal" tabindex="-1" >
+<!-- Modal -->
+<div class="modal fade" id="ActorModal" tabindex="-1" >
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Actor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
             <div class="modal-body">
                 ...
             </div>
@@ -62,44 +58,9 @@
 </div>
 
 
-<!-- Add New Actor Modal -->
-<div class="modal fade" id="createActorModal" tabindex="-1" >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add New Actor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="createActorModal-body">
-                ...
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- View Actor Modal -->
-<div class="modal fade" id="viewActorDetailsModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">View Actor</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="viewActorDetailsModal-body">
-                ...
-            </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-
 <script>
     function showUserDetails(userId) {
-        var modal = $('#userDetailsModal');
+        var modal = $('#ActorModal');
         var modalBody = modal.find('.modal-body');
         
         $.ajax({
@@ -117,8 +78,8 @@
     }
 
     function createActor() {
-        var modal = $('#createActorModal');
-        var modalBody = modal.find('.createActorModal-body');
+        var modal = $('#ActorModal');
+        var modalBody = modal.find('.modal-body');
 
         $.ajax({
             url: '/Actors/Create',
@@ -135,8 +96,8 @@
     }
 
     function viewActorDetails(userId) {
-        var modal = $('#viewActorDetailsModal');
-        var modalBody = modal.find('.viewActorDetailsModal-body');
+        var modal = $('#ActorModal');
+        var modalBody = modal.find('.modal-body');
 
         $.ajax({
             url: '/Actors/GetActorById',

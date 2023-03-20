@@ -15,6 +15,7 @@ namespace BookNowMovie.AppDbContext
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Producers> Producers { get; set; }
         public DbSet<ActorMovies> ActorMovies { get; set; }
+        public DbSet<Cart> CartItems { get; set; }
 
 
 
@@ -24,7 +25,7 @@ namespace BookNowMovie.AppDbContext
 
             modelBuilder.Entity<Cinema>().HasData(new Cinema
             {
-                Id=1,
+                Id = 1,
                 Name = "Cinema 1",
                 Logo = "http://dotnethow.net/images/cinemas/cinema-1.jpeg",
                 Description = "This is the description of the first cinema"
@@ -145,7 +146,7 @@ namespace BookNowMovie.AppDbContext
                 Id = 1,
                 Name = "Life",
                 Description = "This is the Life movie description",
-                Price = 39.50,
+                Price = 39,
                 ImageUrl = "http://dotnethow.net/images/movies/movie-3.jpeg",
                 StartDateTime = DateTime.Now.AddDays(-10),
                 EndDateTime = DateTime.Now.AddDays(10),
@@ -159,7 +160,7 @@ namespace BookNowMovie.AppDbContext
                 Id = 2,
                 Name = "The Shawshank Redemption",
                 Description = "This is the Shawshank Redemption description",
-                Price = 29.50,
+                Price = 29,
                 ImageUrl = "http://dotnethow.net/images/movies/movie-1.jpeg",
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddDays(3),
@@ -173,7 +174,7 @@ namespace BookNowMovie.AppDbContext
                 Id = 3,
                 Name = "Ghost",
                 Description = "This is the Ghost movie description",
-                Price = 39.50,
+                Price = 67,
                 ImageUrl = "http://dotnethow.net/images/movies/movie-4.jpeg",
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddDays(7),
@@ -187,7 +188,7 @@ namespace BookNowMovie.AppDbContext
                 Id = 4,
                 Name = "Race",
                 Description = "This is the Race movie description",
-                Price = 39.50,
+                Price = 71,
                 ImageUrl = "http://dotnethow.net/images/movies/movie-6.jpeg",
                 StartDateTime = DateTime.Now.AddDays(-10),
                 EndDateTime = DateTime.Now.AddDays(-5),
@@ -201,7 +202,7 @@ namespace BookNowMovie.AppDbContext
                 Id = 5,
                 Name = "Scoob",
                 Description = "This is the Scoob movie description",
-                Price = 39.50,
+                Price = 90,
                 ImageUrl = "http://dotnethow.net/images/movies/movie-7.jpeg",
                 StartDateTime = DateTime.Now.AddDays(-10),
                 EndDateTime = DateTime.Now.AddDays(-2),
@@ -215,7 +216,7 @@ namespace BookNowMovie.AppDbContext
                 Id = 6,
                 Name = "Cold Soles",
                 Description = "This is the Cold Soles movie description",
-                Price = 39.50,
+                Price = 44,
                 ImageUrl = "http://dotnethow.net/images/movies/movie-8.jpeg",
                 StartDateTime = DateTime.Now.AddDays(3),
                 EndDateTime = DateTime.Now.AddDays(20),

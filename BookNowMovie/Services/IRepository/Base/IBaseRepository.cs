@@ -8,6 +8,6 @@ namespace BookNowMovie.Services.IRepository.Base
         public Task<T> GetById(int id);
         public Task Add(T entity);
         public void Delete(int id);
-        public void Update(T entity);
+        public Task Update(T entity);
     }
 }

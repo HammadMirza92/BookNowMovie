@@ -3,13 +3,13 @@
 <div class="row">
     @foreach (var item in Model)
     {
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card cardLayout">
                 <div class="card-header text-white bg-black">
                     <p class="card-text">
                         <h5 class="card-title">
                             @item.Name
-                            <a class="btn btn-warning float-end">  <i class="fa fa-edit"></i></a>
+                            <a class="btn btn-warning float-end" onclick="editMovie(@item.Id)">  <i class="fa fa-edit"></i></a>
                         </h5>
                     </p>
                  </div>
@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-md-7">
                             <p class="card-text">@item.Description</p>
-                            <p class="card-text"><b>Cinema : </b>@item.Cinema.Name</p>
+                            <p class="card-text"><b>Cinema : </b>@item.Cinemas.Name</p>
                             <p class="card-text"><b>Category : </b>@item.MovieCategory</p>
                             <p class="card-text"><b>Start Date : </b>@item.StartDateTime.ToString("ddd mmm yy")</p>
                             <p class="card-text"><b>End Date : </b>@item.EndDateTime.ToString("ddd mmm yy")</p>
@@ -48,8 +48,11 @@
                 </div>
                 <div class="card-footer bg-black">
                     <p class="card-text">
-                        <a href="#" class="btn btn-success "><i class="fa fa-dollar actionBtnIcon"></i>@item.Price Purchase Now</a>
-                        <a href="#" class="btn btn-warning float-end"><i class="fa fa-eye actionBtnIcon"></i>Detail</a>
+
+                        <a class="btn btn-success " asp-controller="Cart" asp-action="CreateCart" asp-route-Id="@item.Id"><i class="fa fa-dollar actionBtnIcon"></i>@item.Price Purchase Now</a>
+                        <a class="btn btn-danger float-end " asp-controller="Movie" asp-action="Delete" asp-route-Id="@item.Id"><i class="fa fa-bin actionBtnIcon"></i>Delete</a>
+                    
+                      
                     </p>
                    
                 </div>
@@ -59,3 +62,58 @@
    
     
 </div>
+
+<a class="btn btn-success createFloatingBtn" onClick="addMovie()"><i class="fa fa-plus-square"></i>Add Movie</a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="movieModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="movieModal-body">
+                ...
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function editMovie(movieId) {
+        var modal = $('#movieModal');
+        var modalBody = modal.find('.movieModal-body');
+
+        $.ajax({
+            url: '/Movie/EditMovie',
+            data: { Id: movieId },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+    function addMovie() {
+        var modal = $('#movieModal');
+        var modalBody = modal.find('.movieModal-body');
+
+        $.ajax({
+            url: '/Movie/Create',
+            data: { },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+ </script>

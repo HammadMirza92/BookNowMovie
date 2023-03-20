@@ -13,7 +13,11 @@ namespace BookNowMovie.Services.Repository
         {
             _context = context;
         }
-      
-                
+
+        public async override Task<IEnumerable<Cinema>> GetAll()
+        {
+            var entities = await _context.Cinemas.Include(x => x.Movies).ToListAsync();
+            return entities;
+        }
     }
 }

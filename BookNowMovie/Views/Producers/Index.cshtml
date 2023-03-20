@@ -10,6 +10,7 @@
                 <th>Profile Image</th>
                 <th>Producers Name</th>
                 <th>Bio</th>
+                <th>Movies</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -26,11 +27,19 @@
                     <td class="align-middle">
                         <p>@item.Bio</p>
                     </td>
+                    <td class="middle">
+                        
+                            @foreach (var itm in @item.Movies)
+                            {
+                               <p class="badges"> @itm.Name</p> 
+                            }
+                     
+                    </td>
 
                     <td class="align-middle">
-                        <a class="btn btn-primary actionBtn"> <i class="fa fa-edit actionBtnIcon"></i> Edit</a>
-                        <a class="btn btn-warning actionBtn"> <i class="fa fa-info actionBtnIcon"></i> Detail</a>
-                        <a class="btn btn-danger actionBtn"> <i class="fa fa-trash actionBtnIcon"></i> Delete</a>
+                        <a class="btn btn-primary actionBtn" onclick="editProducer(@item.Id)"> <i class="fa fa-edit actionBtnIcon"></i> Edit</a>
+                        <a class="btn btn-warning actionBtn" onclick="detailProducer(@item.Id)"> <i class="fa fa-info actionBtnIcon"></i> Detail</a>
+                        <a class="btn btn-danger actionBtn" asp-controller="Producers" asp-action="Delete" asp-route-id="@item.Id"> <i class="fa fa-trash actionBtnIcon"></i> Delete</a>
                     </td>
 
                 </tr>
@@ -39,3 +48,76 @@
         </tbody>
     </table>
 </div>
+
+<a class="btn btn-success createFloatingBtn" onclick="createProducer()"><i class="fa fa-plus-square"></i>Add Producer</a>
+
+<!-- Modal -->
+<div class="modal fade" id="ProducerModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                ...
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function createProducer() {
+        var modal = $('#ProducerModal');
+        var modalBody = modal.find('.modal-body');
+
+        $.ajax({
+            url: '/Producers/Create',
+            data: { },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+    function editProducer(producerId) {
+        console.log("function called");
+        var modal = $('#ProducerModal');
+        var modalBody = modal.find('.modal-body');
+
+        $.ajax({
+            url: '/Producers/EditProducer',
+            data: { Id : producerId },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+    function detailProducer(producerId) {
+        console.log("function called");
+        var modal = $('#ProducerModal');
+        var modalBody = modal.find('.modal-body');
+
+        $.ajax({
+            url: '/Producers/Detail',
+            data: { Id: producerId },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+</script>

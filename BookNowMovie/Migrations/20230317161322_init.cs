@@ -25,6 +25,21 @@ namespace BookNowMovie.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CartItems",
+                columns: table => new
+                {
+                    CartId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MovieName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItems", x => x.CartId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cinemas",
                 columns: table => new
                 {
@@ -63,12 +78,12 @@ namespace BookNowMovie.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
+                    Price = table.Column<int>(type: "int", nullable: false),
                     StartDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MovieCategory = table.Column<int>(type: "int", nullable: false),
-                    CinemaId = table.Column<int>(type: "int", nullable: false),
-                    ProducerId = table.Column<int>(type: "int", nullable: false)
+                    ProducerId = table.Column<int>(type: "int", nullable: false),
+                    CinemaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,12 +169,12 @@ namespace BookNowMovie.Migrations
                 columns: new[] { "Id", "CinemaId", "Description", "EndDateTime", "ImageUrl", "MovieCategory", "Name", "Price", "ProducerId", "StartDateTime" },
                 values: new object[,]
                 {
-                    { 1, 3, "This is the Life movie description", new DateTime(2023, 3, 24, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2854), "http://dotnethow.net/images/movies/movie-3.jpeg", 6, "Life", 39.5, 3, new DateTime(2023, 3, 4, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2826) },
-                    { 2, 1, "This is the Shawshank Redemption description", new DateTime(2023, 3, 17, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2896), "http://dotnethow.net/images/movies/movie-1.jpeg", 1, "The Shawshank Redemption", 29.5, 1, new DateTime(2023, 3, 14, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2895) },
-                    { 3, 4, "This is the Ghost movie description", new DateTime(2023, 3, 21, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2925), "http://dotnethow.net/images/movies/movie-4.jpeg", 7, "Ghost", 39.5, 4, new DateTime(2023, 3, 14, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2923) },
-                    { 4, 1, "This is the Race movie description", new DateTime(2023, 3, 9, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2951), "http://dotnethow.net/images/movies/movie-6.jpeg", 6, "Race", 39.5, 2, new DateTime(2023, 3, 4, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2949) },
-                    { 5, 1, "This is the Scoob movie description", new DateTime(2023, 3, 12, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2978), "http://dotnethow.net/images/movies/movie-7.jpeg", 5, "Scoob", 39.5, 3, new DateTime(2023, 3, 4, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(2976) },
-                    { 6, 1, "This is the Cold Soles movie description", new DateTime(2023, 4, 3, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(3009), "http://dotnethow.net/images/movies/movie-8.jpeg", 3, "Cold Soles", 39.5, 5, new DateTime(2023, 3, 17, 13, 3, 21, 196, DateTimeKind.Local).AddTicks(3007) }
+                    { 1, 3, "This is the Life movie description", new DateTime(2023, 3, 27, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3511), "http://dotnethow.net/images/movies/movie-3.jpeg", 6, "Life", 39, 3, new DateTime(2023, 3, 7, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3488) },
+                    { 2, 1, "This is the Shawshank Redemption description", new DateTime(2023, 3, 20, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3634), "http://dotnethow.net/images/movies/movie-1.jpeg", 1, "The Shawshank Redemption", 29, 1, new DateTime(2023, 3, 17, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3633) },
+                    { 3, 4, "This is the Ghost movie description", new DateTime(2023, 3, 24, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3668), "http://dotnethow.net/images/movies/movie-4.jpeg", 7, "Ghost", 67, 4, new DateTime(2023, 3, 17, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3666) },
+                    { 4, 1, "This is the Race movie description", new DateTime(2023, 3, 12, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3693), "http://dotnethow.net/images/movies/movie-6.jpeg", 6, "Race", 71, 2, new DateTime(2023, 3, 7, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3691) },
+                    { 5, 1, "This is the Scoob movie description", new DateTime(2023, 3, 15, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3717), "http://dotnethow.net/images/movies/movie-7.jpeg", 5, "Scoob", 90, 3, new DateTime(2023, 3, 7, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3715) },
+                    { 6, 1, "This is the Cold Soles movie description", new DateTime(2023, 4, 6, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3746), "http://dotnethow.net/images/movies/movie-8.jpeg", 3, "Cold Soles", 44, 5, new DateTime(2023, 3, 20, 21, 13, 21, 675, DateTimeKind.Local).AddTicks(3744) }
                 });
 
             migrationBuilder.InsertData(
@@ -204,6 +219,9 @@ namespace BookNowMovie.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ActorMovies");
+
+            migrationBuilder.DropTable(
+                name: "CartItems");
 
             migrationBuilder.DropTable(
                 name: "Actors");

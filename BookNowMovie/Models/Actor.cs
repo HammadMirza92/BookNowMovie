@@ -9,5 +9,6 @@ namespace BookNowMovie.Models
         public string FullName { get; set; }
         public string Bio { get; set; }
         public string ProfilePictureUrl { get; set; }
+        public ICollection<ActorMovies> ActorMovies { get; set; }
     }
 }

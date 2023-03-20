@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookNowMovie.Models
 {
@@ -11,6 +12,6 @@ namespace BookNowMovie.Models
         public string Bio { get; set; }
 
         //Relationship
-        public List<Movie> Movies { get; set; }
+        public ICollection<Movie> Movies { get; set; }
     }
 }

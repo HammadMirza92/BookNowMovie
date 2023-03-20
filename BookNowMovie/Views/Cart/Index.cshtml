@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+    int globalPrice = 0;
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Cart Id</th>
+            <th scope="col">Movie Names</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CartId</td>
+                <td>@item.MovieName</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>
+            </tr>
+            globalPrice = globalPrice + @item.Price;
+                   
+        }
+
+        
+       
+    </tbody>
+</table>
+<div>
+    <h4 style="float-end">Total Amouny : @globalPrice</h4>
+    <a class="btn btn-success"> Check out</a>
+</div>
+
+

@@ -30,10 +30,19 @@ namespace BookNowMovie.Services.Repository.Base
             _context.SaveChangesAsync();
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
+            var existingEntity = _context.Set<T>().Local.FirstOrDefault();
+            if (existingEntity != null)
+            {
+                _context.Entry(existingEntity).State = EntityState.Detached;
+            }
+            _context.Entry(entity).State = EntityState.Modified;
+/*            _context.SaveChanges();*/
+
+
             _context.Set<T>().Update(entity);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }

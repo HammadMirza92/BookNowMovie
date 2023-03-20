@@ -28,9 +28,9 @@
                     </td>
 
                     <td class="align-middle">
-                        <a class="btn btn-primary actionBtn"> <i class="fa fa-edit actionBtnIcon"></i> Edit</a>
-                        <a class="btn btn-warning actionBtn"> <i class="fa fa-info actionBtnIcon"></i> Detail</a>
-                        <a class="btn btn-danger actionBtn"> <i class="fa fa-trash actionBtnIcon"></i> Delete</a>
+                        <a class="btn btn-primary actionBtn" onclick="editCinema(@item.Id)"> <i class="fa fa-edit actionBtnIcon"></i> Edit</a>
+                        <a class="btn btn-warning actionBtn" onclick="detialCinema(@item.Id)"> <i class="fa fa-info actionBtnIcon"></i> Detail</a>
+                        <a class="btn btn-danger actionBtn" asp-controller="Cinema" asp-action="Delete" asp-route-Id="@item.Id"> <i class="fa fa-trash actionBtnIcon"></i> Delete</a>
                     </td>
 
                 </tr>
@@ -39,3 +39,81 @@
         </tbody>
     </table>
 </div>
+
+
+<a class="btn btn-success createFloatingBtn" onClick="addCinema()"><i class="fa fa-plus-square"></i>Add Cinema</a>
+
+
+<!-- Add Cinema Modal -->
+<div class="modal fade" id="cinemaModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+           
+            <div class="cinemaModal-body">
+                ...
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function addCinema() {
+        console.log("this is called");
+        var modal = $('#cinemaModal');
+        var modalBody = modal.find('.cinemaModal-body');
+
+        $.ajax({
+            url: '/Cinema/Create',
+            data: { },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+    function editCinema(cinemaId) {
+        console.log("this is called");
+        var modal = $('#cinemaModal');
+        var modalBody = modal.find('.cinemaModal-body');
+
+        $.ajax({
+            url: '/Cinema/EditCinema',
+            data: { Id: cinemaId },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+    function detialCinema(cinemaId) {
+        console.log("this is called");
+        var modal = $('#cinemaModal');
+        var modalBody = modal.find('.cinemaModal-body');
+
+        $.ajax({
+            url: '/Cinema/Detail',
+            data: { Id: cinemaId },
+            success: function (data) {
+                modalBody.html(data);
+            },
+            error: function () {
+                modalBody.html('<p>Error loading user details.</p>');
+            }
+        });
+
+        modal.modal('show');
+    }
+
+</script>

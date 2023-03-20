@@ -49,3 +49,23 @@ body {
     right:10px;
     z-index:1;
 }
+.mainPopupModalContainer {
+   padding:30px;
+}
+.form-group{
+    padding-top:20px;
+}
+.form-control{
+    margin-top:10px;
+}
+.badges{
+    background-color:darkseagreen;
+    width:140px;
+    padding:10px;
+    border-radius:5px;
+    text-align:center;
+    margin-top:15px;
+}
+td.middle {
+    vertical-align: middle;
+}
