@@ -96,8 +96,8 @@ namespace BookNowMovie.Controllers
                         };
 
                         await _orderDetailRepository.Add(orderDetail);
-                        _movieRepository.UpdateStock(item.MovieId, item.Quantity);
-                        _cartRepository.Delete(item.CartId);
+                        await _movieRepository.UpdateStock(item.MovieId, item.Quantity);
+                         _cartRepository.Delete(item.CartId);
                     }
                 }
                

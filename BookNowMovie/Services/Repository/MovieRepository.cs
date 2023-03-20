@@ -27,7 +27,7 @@ namespace BookNowMovie.Services.Repository
             rt.Stock = rt.Stock - stock;
 
             _context.Movies.Update(rt);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }
