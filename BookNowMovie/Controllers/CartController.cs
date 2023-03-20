@@ -62,8 +62,9 @@ namespace BookNowMovie.Controllers
           
             return RedirectToAction("Index");
         }
-
-        public async Task<IActionResult> checkout()
+        [HttpPost]
+        [Route("cart/checkoutDb")]
+        public async Task<IActionResult> checkoutDb(Users user)
         {
             var cartItems = await _cartRepository.GetAll();
 
@@ -78,7 +79,10 @@ namespace BookNowMovie.Controllers
                 Order order = new Order()
                 {
                     UserId = 2,
-                    Total = totalPrice
+                    Total = totalPrice,
+                    UserName = user.UserName,
+                    UserEmail = user.UserEmail,
+                    UserPhone = user.UserPhone,
                 };
 
                 var cnrtOrder =await _orderRepository.Add(order);
@@ -104,9 +108,15 @@ namespace BookNowMovie.Controllers
 
             }
 
-           /* ViewBag.Items = _orderDetailRepository.GetAll();*/
             return View();
             
+        }
+
+        public async Task<IActionResult> checkout()
+        {
+            
+            return View();
+
         }
 
 
