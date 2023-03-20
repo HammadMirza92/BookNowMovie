@@ -6,7 +6,7 @@ namespace BookNowMovie.Services.IRepository.Base
     {
         public Task<IEnumerable<T>> GetAll();
         public Task<T> GetById(int id);
-        public Task Add(T entity);
+        public Task<T> Add(T entity);
         public void Delete(int id);
         public Task Update(T entity);
     }

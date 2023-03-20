@@ -2,11 +2,11 @@
 
 namespace BookNowMovie.Models
 {
-    public class Order
+    public class OrderDetail
     {
         [Key]
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public int Total { get; set; }
+        public int OrderId { get; set; }
+        public Order Orders { get; set; }
     }
 }

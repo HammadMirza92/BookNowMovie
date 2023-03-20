@@ -8,10 +8,15 @@ namespace BookNowMovie.Controllers
     {
         private readonly ICartRepository _cartRepository;
         private readonly IMovieRepository _movieRepository;
-        public CartController(ICartRepository cartRepository,IMovieRepository movieRepository)
+        private readonly IOrderRepository _orderRepository;
+        private readonly IOrderDetailRepository _orderDetailRepository;
+
+        public CartController(ICartRepository cartRepository,IMovieRepository movieRepository, IOrderRepository orderRepository,IOrderDetailRepository orderDetailRepository)
         {
             _cartRepository = cartRepository;
             _movieRepository = movieRepository;
+            _orderRepository= orderRepository;
+            _orderDetailRepository= orderDetailRepository;
         }
         public async Task<IActionResult> Index()
         {
@@ -54,6 +59,62 @@ namespace BookNowMovie.Controllers
            
           
             return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> checkout()
+        {
+            var cartItems = await _cartRepository.GetAll();
+
+            var totalPrice = CalculatePrice(cartItems);
+
+            if (cartItems == null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Order order = new Order()
+                {
+                    UserId = 2,
+                    Total = totalPrice
+                };
+
+                var cnrtOrder =await _orderRepository.Add(order);
+
+                if (cartItems.Count() != 0)
+                {
+                    foreach (var item in cartItems)
+                    {
+                        OrderDetail orderDetail = new OrderDetail()
+                        {
+                            OrderId = cnrtOrder.Id,
+                            Movie = item.MovieName
+                        };
+
+                        await _orderDetailRepository.Add(orderDetail);
+                        _cartRepository.Delete(item.CartId);
+                    }
+                }
+               
+
+            }
+
+           /* ViewBag.Items = _orderDetailRepository.GetAll();*/
+            return View();
+            
+        }
+
+
+        public int CalculatePrice(IEnumerable<Cart> cartItems)
+        {
+            int total = 0;
+
+            foreach (var cartItem in cartItems)
+            {
+                total += cartItem.Price;
+            }
+
+            return total;
         }
     }
 }

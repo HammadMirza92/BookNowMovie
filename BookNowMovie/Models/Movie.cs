@@ -15,7 +15,7 @@ namespace BookNowMovie.Models
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public MovieCategory MovieCategory { get; set; }
-
+        public int Stock { get; set; }
 
         //Relationships
         public int ProducerId { get; set; }

@@ -15,11 +15,11 @@ namespace BookNowMovie.Services.Repository.Base
           
         public async Task<T> GetById(int id) => await _context.Set<T>().FindAsync(id);
     
-        public async Task Add(T entity)
+        public async Task<T> Add(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
             await _context.SaveChangesAsync();
-
+            return entity;
         }
 
         public void Delete(int id)

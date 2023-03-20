@@ -15,7 +15,10 @@ namespace BookNowMovie.AppDbContext
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Producers> Producers { get; set; }
         public DbSet<ActorMovies> ActorMovies { get; set; }
-        public DbSet<Cart> CartItems { get; set; }
+        public DbSet<Cart> Cart { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Users> users{ get; set; }
 
 
 
@@ -151,6 +154,7 @@ namespace BookNowMovie.AppDbContext
                 StartDateTime = DateTime.Now.AddDays(-10),
                 EndDateTime = DateTime.Now.AddDays(10),
                 CinemaId = 3,
+                Stock = 23,
                 ProducerId = 3,
                 MovieCategory = MovieCategory.Documentary
 
@@ -165,6 +169,7 @@ namespace BookNowMovie.AppDbContext
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddDays(3),
                 CinemaId = 1,
+                Stock = 29,
                 ProducerId = 1,
                 MovieCategory = MovieCategory.Action
 
@@ -179,6 +184,7 @@ namespace BookNowMovie.AppDbContext
                 StartDateTime = DateTime.Now,
                 EndDateTime = DateTime.Now.AddDays(7),
                 CinemaId = 4,
+                Stock = 99,
                 ProducerId = 4,
                 MovieCategory = MovieCategory.Horror
 
@@ -193,6 +199,7 @@ namespace BookNowMovie.AppDbContext
                 StartDateTime = DateTime.Now.AddDays(-10),
                 EndDateTime = DateTime.Now.AddDays(-5),
                 CinemaId = 1,
+                Stock = 88,
                 ProducerId = 2,
                 MovieCategory = MovieCategory.Documentary
 
@@ -206,6 +213,7 @@ namespace BookNowMovie.AppDbContext
                 ImageUrl = "http://dotnethow.net/images/movies/movie-7.jpeg",
                 StartDateTime = DateTime.Now.AddDays(-10),
                 EndDateTime = DateTime.Now.AddDays(-2),
+                Stock = 43,
                 CinemaId = 1,
                 ProducerId = 3,
                 MovieCategory = MovieCategory.Cartoon
@@ -221,6 +229,7 @@ namespace BookNowMovie.AppDbContext
                 StartDateTime = DateTime.Now.AddDays(3),
                 EndDateTime = DateTime.Now.AddDays(20),
                 CinemaId = 1,
+                Stock = 83,
                 ProducerId = 5,
                 MovieCategory = MovieCategory.Darama
 

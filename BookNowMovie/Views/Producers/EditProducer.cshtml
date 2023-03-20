@@ -1,23 +1,33 @@
 ﻿@model BookNowMovie.Models.Producers
 
-<form asp-controller="Producers" asp-action="Edit">
-    <div class="form-group" style="display:none">
-        <label asp-for="Id" class="form-label"></label>
-        <input asp-for="Id" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="ProfilePictureUrl" class="form-label" ></label>
-        <input asp-for="ProfilePictureUrl" class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label asp-for="FullName" class="form-label"></label>
-        <input asp-for="FullName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Bio" class="form-label"></label>
-        <input asp-for="Bio" class="form-control" />
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary" />
-    </div>
-</form>
+<div>
+    <h2>Edit @Model.FullName</h2>
+</div>
+
+<hr />
+
+<div class="container" style="margin-top:20px;margin-bottom:20px;">
+
+
+    <form asp-controller="Producers" asp-action="Edit">
+        <div class="form-group" style="display:none">
+            <label asp-for="Id" class="form-label"></label>
+            <input asp-for="Id" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ProfilePictureUrl" class="form-label" ></label>
+            <input asp-for="ProfilePictureUrl" class="form-control"/>
+        </div>
+        <div class="form-group">
+            <label asp-for="FullName" class="form-label"></label>
+            <input asp-for="FullName" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Bio" class="form-label"></label>
+            <input asp-for="Bio" class="form-control" />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

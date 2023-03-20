@@ -17,7 +17,7 @@ namespace BookNowMovie.Services.Repository
 
         public async Task<Cart> GetMovieByName(string movieName)
         {
-            var cartMovie = await _context.CartItems.Where(x => x.MovieName == movieName).FirstOrDefaultAsync();
+            var cartMovie = await _context.Cart.Where(x => x.MovieName == movieName).FirstOrDefaultAsync();
             return cartMovie;
         }
 
