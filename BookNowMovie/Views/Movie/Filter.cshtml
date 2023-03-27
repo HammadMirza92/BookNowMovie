@@ -1,4 +1,9 @@
 ﻿
+@{
+    ViewData["Title"] = "Filter";
+}
+
+
 
 <div class="row">
     @foreach (var item in Model)
@@ -12,7 +17,7 @@
                             <a class="btn btn-warning float-end" onclick="editMovie(@item.Id)">  <i class="fa fa-edit"></i></a>
                         </h5>
                     </p>
-                 </div>
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-5">
@@ -24,10 +29,10 @@
                             <p class="card-text"><b>Category : </b>@item.MovieCategory</p>
                             <p class="card-text"><b>Start Date : </b>@item.StartDateTime.ToString("ddd mmm yy")</p>
                             <p class="card-text"><b>End Date : </b>@item.EndDateTime.ToString("ddd mmm yy")</p>
-                            <p class="card-text"><b>Producer : </b>@item.Producers.FullName</p>
-                            <p class="card-text"><b>Status : </b>
-                                
-                                @if (DateTime.Now >= item.StartDateTime && DateTime.Now <= item.EndDateTime && item.Stock > 0)
+                            <p class="card-text">
+                                <b>Status : </b>
+
+                                @if (DateTime.Now >= item.StartDateTime && DateTime.Now <= item.EndDateTime)
                                 {
                                     <span class="bg-success text-white p-1 rounded">Available</span>
                                 }
@@ -35,38 +40,37 @@
                                 {
                                     <span class="bg-danger text-white p-1 rounded">Expired</span>
                                 }
-                                else if (item.Stock <= 0)
+                                else
                                 {
-                                    <span class="bg-danger text-white p-1 rounded"> Out Of Stock</span>
-                                }else{
+
                                     <span class="bg-primary text-white p-1 rounded"> Comming Soon</span>
+
                                 }
-                               
 
                             </p>
                         </div>
                     </div>
 
-                   
+
                 </div>
                 <div class="card-footer bg-black">
                     <p class="card-text">
-                        @if (DateTime.Now >= item.StartDateTime && DateTime.Now <= item.EndDateTime && item.Stock > 0)
+                        @if (DateTime.Now >= item.StartDateTime && DateTime.Now <= item.EndDateTime)
                         {
                             <a class="btn btn-success " asp-controller="Cart" asp-action="CreateCart" asp-route-Id="@item.Id"><i class="fa fa-dollar actionBtnIcon"></i>@item.Price Purchase Now</a>
                         }
 
                         <a class="btn btn-danger float-end " asp-controller="Movie" asp-action="Delete" asp-route-Id="@item.Id"><i class="fa fa-bin actionBtnIcon"></i>Delete</a>
-                    
-                      
+
+
                     </p>
-                   
+
                 </div>
             </div>
         </div>
     }
-   
-    
+
+
 </div>
 
 <a class="btn btn-success createFloatingBtn" onClick="addMovie()"><i class="fa fa-plus-square"></i>Add Movie</a>
@@ -110,7 +114,7 @@
 
         $.ajax({
             url: '/Movie/Create',
-            data: { },
+            data: {},
             success: function (data) {
                 modalBody.html(data);
             },
@@ -122,4 +126,5 @@
         modal.modal('show');
     }
 
- </script>
+</script>
+

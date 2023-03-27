@@ -6,6 +6,6 @@ namespace BookNowMovie.Services.IRepository
 {
     public interface IOrderRepository: IBaseRepository<Order>
     {
-       
+        public Task<IEnumerable<Order>> GetCurrentUserOrders(int userId);
     }
 }

@@ -14,7 +14,11 @@ namespace BookNowMovie.Services.Repository
             _context = context;
         }
 
-        
-                
+        public async Task<IEnumerable<Order>> GetCurrentUserOrders(int userId)
+        {
+            var cntuserOrders = await _context.Orders.Where(x => x.UserId == userId).Include(od=> od.OrderDetail).ToListAsync();
+            return cntuserOrders;
+        }
+
     }
 }

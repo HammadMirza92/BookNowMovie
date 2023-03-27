@@ -63,7 +63,7 @@ namespace BookNowMovie.Controllers
         }
         public async Task<IActionResult> Delete(int id)
         {
-            _producersRepository.Delete(id);
+          await  _producersRepository.Delete(id);
            return RedirectToAction("Index");
         }
     }

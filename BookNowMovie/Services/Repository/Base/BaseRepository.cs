@@ -13,21 +13,21 @@ namespace BookNowMovie.Services.Repository.Base
         }
         public async virtual Task<IEnumerable<T>> GetAll() => await _context.Set<T>().ToListAsync();
           
-        public async Task<T> GetById(int id) => await _context.Set<T>().FindAsync(id);
+        public async virtual Task<T> GetById(int id) => await _context.Set<T>().FindAsync(id);
     
         public async Task<T> Add(T entity)
         {
-            await _context.Set<T>().AddAsync(entity);
+           await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            var entity = _context.Set<T>().Find(id);
+            var entity = await _context.Set<T>().FindAsync(id);
 
-            _context.Set<T>().Remove(entity);
-            _context.SaveChangesAsync();
+             _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Update(T entity)

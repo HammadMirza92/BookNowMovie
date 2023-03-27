@@ -27,7 +27,7 @@ namespace BookNowMovie.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Actor actor)
         {
-           await _actorRepository.Add(actor);
+            _actorRepository.Add(actor);
             return RedirectToAction("Index");
         }
         [HttpGet]
@@ -59,7 +59,7 @@ namespace BookNowMovie.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            _actorRepository.Delete(id);
+           await _actorRepository.Delete(id);
             return RedirectToAction("Index");
         }
 

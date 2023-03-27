@@ -30,6 +30,11 @@ namespace BookNowMovie.Controllers
             return View(allMovies);
         }
 
+        public async Task<IActionResult> Filter(string MovieName , int price)
+        {
+            var movie = await _movieRepository.GetMovieByname(MovieName , price);
+            return View(movie);
+        }
         public async Task<IActionResult> Create()
         {
             ViewBag.producer = await _producersRepository.GetAll();
@@ -37,7 +42,6 @@ namespace BookNowMovie.Controllers
 
             List<MovieCategory> MovieCategory = Enum.GetValues(typeof(MovieCategory)).Cast<MovieCategory>().ToList();
             ViewBag.data = MovieCategory;
-
 
             return PartialView();
         }
@@ -51,6 +55,7 @@ namespace BookNowMovie.Controllers
         public async Task<IActionResult> EditMovie(int id)
         {
             var movie = await _movieRepository.GetById(id);
+ 
             ViewBag.producer = await _producersRepository.GetAll();
             ViewBag.Cinema = await _cinemaRepository.GetAll();
 
@@ -67,13 +72,13 @@ namespace BookNowMovie.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Movie movie)
         {
-            _movieRepository.Update(movie);
+            await _movieRepository.Update(movie);
             return RedirectToAction("Index");
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            _movieRepository.Delete(id);
+            await _movieRepository.Delete(id);
             return RedirectToAction("Index");
         }
     }

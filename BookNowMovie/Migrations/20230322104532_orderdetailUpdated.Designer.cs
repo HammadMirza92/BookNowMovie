@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookNowMovie.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230320161629_init")]
-    partial class init
+    [Migration("20230322104532_orderdetailUpdated")]
+    partial class orderdetailUpdated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,15 +33,12 @@ namespace BookNowMovie.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Bio")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePictureUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -186,7 +183,6 @@ namespace BookNowMovie.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MovieName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
@@ -211,15 +207,12 @@ namespace BookNowMovie.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Logo")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -276,21 +269,18 @@ namespace BookNowMovie.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDateTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MovieCategory")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
@@ -319,13 +309,13 @@ namespace BookNowMovie.Migrations
                             Id = 1,
                             CinemaId = 3,
                             Description = "This is the Life movie description",
-                            EndDateTime = new DateTime(2023, 3, 30, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1181),
+                            EndDateTime = new DateTime(2023, 4, 1, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7343),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-3.jpeg",
                             MovieCategory = 6,
                             Name = "Life",
                             Price = 39,
                             ProducerId = 3,
-                            StartDateTime = new DateTime(2023, 3, 10, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1163),
+                            StartDateTime = new DateTime(2023, 3, 12, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7321),
                             Stock = 23
                         },
                         new
@@ -333,13 +323,13 @@ namespace BookNowMovie.Migrations
                             Id = 2,
                             CinemaId = 1,
                             Description = "This is the Shawshank Redemption description",
-                            EndDateTime = new DateTime(2023, 3, 23, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1203),
+                            EndDateTime = new DateTime(2023, 3, 25, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7357),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-1.jpeg",
                             MovieCategory = 1,
                             Name = "The Shawshank Redemption",
                             Price = 29,
                             ProducerId = 1,
-                            StartDateTime = new DateTime(2023, 3, 20, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1202),
+                            StartDateTime = new DateTime(2023, 3, 22, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7357),
                             Stock = 29
                         },
                         new
@@ -347,13 +337,13 @@ namespace BookNowMovie.Migrations
                             Id = 3,
                             CinemaId = 4,
                             Description = "This is the Ghost movie description",
-                            EndDateTime = new DateTime(2023, 3, 27, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1218),
+                            EndDateTime = new DateTime(2023, 3, 29, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7366),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-4.jpeg",
                             MovieCategory = 7,
                             Name = "Ghost",
                             Price = 67,
                             ProducerId = 4,
-                            StartDateTime = new DateTime(2023, 3, 20, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1217),
+                            StartDateTime = new DateTime(2023, 3, 22, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7365),
                             Stock = 99
                         },
                         new
@@ -361,13 +351,13 @@ namespace BookNowMovie.Migrations
                             Id = 4,
                             CinemaId = 1,
                             Description = "This is the Race movie description",
-                            EndDateTime = new DateTime(2023, 3, 15, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1232),
+                            EndDateTime = new DateTime(2023, 3, 17, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7376),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-6.jpeg",
                             MovieCategory = 6,
                             Name = "Race",
                             Price = 71,
                             ProducerId = 2,
-                            StartDateTime = new DateTime(2023, 3, 10, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1231),
+                            StartDateTime = new DateTime(2023, 3, 12, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7374),
                             Stock = 88
                         },
                         new
@@ -375,13 +365,13 @@ namespace BookNowMovie.Migrations
                             Id = 5,
                             CinemaId = 1,
                             Description = "This is the Scoob movie description",
-                            EndDateTime = new DateTime(2023, 3, 18, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1247),
+                            EndDateTime = new DateTime(2023, 3, 20, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7387),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-7.jpeg",
                             MovieCategory = 5,
                             Name = "Scoob",
                             Price = 90,
                             ProducerId = 3,
-                            StartDateTime = new DateTime(2023, 3, 10, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1246),
+                            StartDateTime = new DateTime(2023, 3, 12, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7386),
                             Stock = 43
                         },
                         new
@@ -389,13 +379,13 @@ namespace BookNowMovie.Migrations
                             Id = 6,
                             CinemaId = 1,
                             Description = "This is the Cold Soles movie description",
-                            EndDateTime = new DateTime(2023, 4, 9, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1263),
+                            EndDateTime = new DateTime(2023, 4, 11, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7398),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-8.jpeg",
                             MovieCategory = 3,
                             Name = "Cold Soles",
                             Price = 44,
                             ProducerId = 5,
-                            StartDateTime = new DateTime(2023, 3, 23, 21, 16, 28, 608, DateTimeKind.Local).AddTicks(1262),
+                            StartDateTime = new DateTime(2023, 3, 25, 15, 45, 31, 768, DateTimeKind.Local).AddTicks(7397),
                             Stock = 83
                         });
                 });
@@ -412,18 +402,15 @@ namespace BookNowMovie.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserEmail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPhone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -443,7 +430,6 @@ namespace BookNowMovie.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("MovieName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderId")
@@ -468,15 +454,12 @@ namespace BookNowMovie.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Bio")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePictureUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -530,15 +513,12 @@ namespace BookNowMovie.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("UserEmail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPhone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -598,7 +578,7 @@ namespace BookNowMovie.Migrations
             modelBuilder.Entity("BookNowMovie.Models.OrderDetail", b =>
                 {
                     b.HasOne("BookNowMovie.Models.Order", "Orders")
-                        .WithMany()
+                        .WithMany("OrderDetail")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -619,6 +599,11 @@ namespace BookNowMovie.Migrations
             modelBuilder.Entity("BookNowMovie.Models.Movie", b =>
                 {
                     b.Navigation("ActorMovies");
+                });
+
+            modelBuilder.Entity("BookNowMovie.Models.Order", b =>
+                {
+                    b.Navigation("OrderDetail");
                 });
 
             modelBuilder.Entity("BookNowMovie.Models.Producers", b =>

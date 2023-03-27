@@ -1,6 +1,8 @@
 ﻿using BookNowMovie.Models;
 using BookNowMovie.Services.IRepository;
+using BookNowMovie.Services.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 
 namespace BookNowMovie.Controllers
 {
@@ -26,6 +28,12 @@ namespace BookNowMovie.Controllers
                 return View("NotFound");
             }
             return View(cartItems);
+        }
+        public async Task<int> CartItemCount()
+        {
+            var cartItems = await _cartRepository.GetAll();
+            var count = cartItems.Count();
+            return count;
         }
         public async Task<IActionResult> CreateCart(int id)
         {
@@ -56,7 +64,7 @@ namespace BookNowMovie.Controllers
                     Price = movie.Price,
                     Active = true
                 };
-                await _cartRepository.Add(item);
+                 await _cartRepository.Add(item);
             }
            
           
@@ -69,7 +77,7 @@ namespace BookNowMovie.Controllers
             var cartItems = await _cartRepository.GetAll();
 
             var totalPrice = CalculatePrice(cartItems);
-
+            
             if (cartItems == null)
             {
                 return RedirectToAction("Index");
@@ -85,28 +93,33 @@ namespace BookNowMovie.Controllers
                     UserPhone = user.UserPhone,
                 };
 
-                var cnrtOrder =await _orderRepository.Add(order);
-
-                if (cartItems.Count() != 0)
+                var cnrtOrder = await _orderRepository.Add(order);
+                int count = 0;
+               // var cnrtOrder = await _orderRepository.GetById();
+                foreach (var item in cartItems)
                 {
-                    foreach (var item in cartItems)
-                    {
-                        OrderDetail orderDetail = new OrderDetail()
-                        {
-                            OrderId = cnrtOrder.Id,
-                            MovieId = item.MovieId,
-                            MovieName = item.MovieName,
-                            Quantity = item.Quantity,
-                        };
+                    ++count;
 
-                        await _orderDetailRepository.Add(orderDetail);
-                        await _movieRepository.UpdateStock(item.MovieId, item.Quantity);
-                         _cartRepository.Delete(item.CartId);
+                    if (item == null)
+                    {
+                        return null;
                     }
+                    OrderDetail orderDetail = new OrderDetail()
+                    {
+                        OrderId = cnrtOrder.Id,
+                        MovieId = item.MovieId,
+                        MovieName = item.MovieName,
+                        Quantity = item.Quantity,
+                    };
+
+                   var temp = await _orderDetailRepository.Add(orderDetail);
+                    await _movieRepository.UpdateStock(item.MovieId, item.Quantity);
+                    await _cartRepository.Delete(item.CartId);
                 }
-               
 
             }
+
+     
             return RedirectToAction("Index");
 
             /*  return View();*/
@@ -115,11 +128,23 @@ namespace BookNowMovie.Controllers
 
         public async Task<IActionResult> checkout()
         {
-            
+            var cartItems = await _cartRepository.GetAll();
+            ViewBag.CartItems = cartItems;
             return View();
 
         }
+        public async Task<IActionResult> myAccount(int userId)
+        {
+            var userOrder = await _orderRepository.GetCurrentUserOrders(2);
 
+            return RedirectToAction("Index");
+
+        }
+        public async Task<IActionResult> Remove(int id)
+        {
+            await _cartRepository.Delete(id);
+            return RedirectToAction("Index");
+        }
 
         public int CalculatePrice(IEnumerable<Cart> cartItems)
         {

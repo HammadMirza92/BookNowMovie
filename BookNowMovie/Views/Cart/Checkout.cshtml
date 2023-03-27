@@ -1,12 +1,16 @@
 ﻿@model BookNowMovie.Models.Users
 @{
+    int globalPrice = 0;
 }
 
 <h4>Check out page</h4>
 
 <div class="row">
 
-    <div class="col-md-8">
+    <div class="col-md-8 ">
+        <div class="card cardCheckout">
+
+       
         <form asp-controller="cart" asp-action="checkoutDb">
             <div class="form-group" style="display:none">
                 <label asp-for="Id" class="form-label"></label>
@@ -28,14 +32,43 @@
             </div>
             <div class="form-group">
              
-                <input type="submit" class="btn btn-success" />
+                <input type="submit" value="Complete The Process" class="btn btn-success" />
             </div>
         </form>
+        </div>
     </div>
     <div class="col-md-4">
+        <div class="card cardCheckout">
+            
 
+       
+        <table class="table">
+            <thead>
+                <tr>
+                   
+                    <th scope="col">Movie Names</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @ViewBag.CartItems)
+                {
+                    <tr>
+               
+                        <td>@item.MovieName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Price</td>
+                    </tr>
+
+                    globalPrice = globalPrice + @item.Price;
+                 
+                }
+            </tbody>
+        </table>
+        <h4 style="float-end">Total Amount : @globalPrice</h4>
     </div>
-
+    </div>
 
   @*  @foreach (var item in @ViewBag.Items)
     {

@@ -6,5 +6,6 @@ namespace BookNowMovie.Services.IRepository
     public interface ICartRepository : IBaseRepository<Cart>
     {
         public Task<Cart> GetMovieByName(string movieName);
+       
     }
 }

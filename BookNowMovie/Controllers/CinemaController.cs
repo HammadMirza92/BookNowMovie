@@ -65,7 +65,7 @@ namespace BookNowMovie.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-             _cinemaRepository.Delete(id);
+            await _cinemaRepository.Delete(id);
           
             return RedirectToAction("Index");
         }
