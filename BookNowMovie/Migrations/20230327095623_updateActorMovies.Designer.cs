@@ -4,6 +4,7 @@ using BookNowMovie.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookNowMovie.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230327095623_updateActorMovies")]
+    partial class updateActorMovies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -307,13 +309,13 @@ namespace BookNowMovie.Migrations
                             Id = 1,
                             CinemaId = 3,
                             Description = "This is the Life movie description",
-                            EndDateTime = new DateTime(2023, 4, 6, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6255),
+                            EndDateTime = new DateTime(2023, 4, 6, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1119),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-3.jpeg",
                             MovieCategory = 6,
                             Name = "Life",
                             Price = 39,
                             ProducerId = 3,
-                            StartDateTime = new DateTime(2023, 3, 17, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6239),
+                            StartDateTime = new DateTime(2023, 3, 17, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1100),
                             Stock = 23
                         },
                         new
@@ -321,13 +323,13 @@ namespace BookNowMovie.Migrations
                             Id = 2,
                             CinemaId = 1,
                             Description = "This is the Shawshank Redemption description",
-                            EndDateTime = new DateTime(2023, 3, 30, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6273),
+                            EndDateTime = new DateTime(2023, 3, 30, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1134),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-1.jpeg",
                             MovieCategory = 1,
                             Name = "The Shawshank Redemption",
                             Price = 29,
                             ProducerId = 1,
-                            StartDateTime = new DateTime(2023, 3, 27, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6272),
+                            StartDateTime = new DateTime(2023, 3, 27, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1133),
                             Stock = 29
                         },
                         new
@@ -335,13 +337,13 @@ namespace BookNowMovie.Migrations
                             Id = 3,
                             CinemaId = 4,
                             Description = "This is the Ghost movie description",
-                            EndDateTime = new DateTime(2023, 4, 3, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6288),
+                            EndDateTime = new DateTime(2023, 4, 3, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1146),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-4.jpeg",
                             MovieCategory = 7,
                             Name = "Ghost",
                             Price = 67,
                             ProducerId = 4,
-                            StartDateTime = new DateTime(2023, 3, 27, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6287),
+                            StartDateTime = new DateTime(2023, 3, 27, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1145),
                             Stock = 99
                         },
                         new
@@ -349,13 +351,13 @@ namespace BookNowMovie.Migrations
                             Id = 4,
                             CinemaId = 1,
                             Description = "This is the Race movie description",
-                            EndDateTime = new DateTime(2023, 3, 22, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6302),
+                            EndDateTime = new DateTime(2023, 3, 22, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1158),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-6.jpeg",
                             MovieCategory = 6,
                             Name = "Race",
                             Price = 71,
                             ProducerId = 2,
-                            StartDateTime = new DateTime(2023, 3, 17, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6301),
+                            StartDateTime = new DateTime(2023, 3, 17, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1157),
                             Stock = 88
                         },
                         new
@@ -363,13 +365,13 @@ namespace BookNowMovie.Migrations
                             Id = 5,
                             CinemaId = 1,
                             Description = "This is the Scoob movie description",
-                            EndDateTime = new DateTime(2023, 3, 25, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6375),
+                            EndDateTime = new DateTime(2023, 3, 25, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1169),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-7.jpeg",
                             MovieCategory = 5,
                             Name = "Scoob",
                             Price = 90,
                             ProducerId = 3,
-                            StartDateTime = new DateTime(2023, 3, 17, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6374),
+                            StartDateTime = new DateTime(2023, 3, 17, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1168),
                             Stock = 43
                         },
                         new
@@ -377,13 +379,13 @@ namespace BookNowMovie.Migrations
                             Id = 6,
                             CinemaId = 1,
                             Description = "This is the Cold Soles movie description",
-                            EndDateTime = new DateTime(2023, 4, 16, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6394),
+                            EndDateTime = new DateTime(2023, 4, 16, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1181),
                             ImageUrl = "http://dotnethow.net/images/movies/movie-8.jpeg",
                             MovieCategory = 3,
                             Name = "Cold Soles",
                             Price = 44,
                             ProducerId = 5,
-                            StartDateTime = new DateTime(2023, 3, 30, 15, 26, 39, 347, DateTimeKind.Local).AddTicks(6393),
+                            StartDateTime = new DateTime(2023, 3, 30, 14, 56, 22, 566, DateTimeKind.Local).AddTicks(1180),
                             Stock = 83
                         });
                 });
@@ -526,7 +528,7 @@ namespace BookNowMovie.Migrations
 
             modelBuilder.Entity("BookNowMovie.Models.ActorMovies", b =>
                 {
-                    b.HasOne("BookNowMovie.Models.Actor", "Actors")
+                    b.HasOne("BookNowMovie.Models.Actor", null)
                         .WithMany("ActorMovies")
                         .HasForeignKey("ActorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -537,8 +539,6 @@ namespace BookNowMovie.Migrations
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Actors");
                 });
 
             modelBuilder.Entity("BookNowMovie.Models.Cart", b =>

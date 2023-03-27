@@ -17,7 +17,7 @@ namespace BookNowMovie.Services.Repository.Base
     
         public async Task<T> Add(T entity)
         {
-           await _context.AddAsync(entity);
+            await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
             return entity;
         }

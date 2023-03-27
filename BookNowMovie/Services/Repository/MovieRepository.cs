@@ -18,7 +18,8 @@ namespace BookNowMovie.Services.Repository
         {
             var entities = await _context.Movies.Where(x=> x.Id == id)
                 .Include(c => c.Cinemas)
-                .Include(p=> p.Producers).FirstOrDefaultAsync();
+                .Include(p=> p.Producers)
+                .Include(am=>am.ActorMovies).FirstOrDefaultAsync();
             return entities;
         }
         public async override Task<IEnumerable<Movie>> GetAll()

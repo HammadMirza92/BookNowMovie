@@ -13,8 +13,13 @@ namespace BookNowMovie.Services.Repository
         {
             _context = context;
         }
+       
+        public async override Task<Actor> GetById(int id)
+        {
+            var entities = await _context.Actors.Where(x => x.Id == id)
+                .Include(am => am.ActorMovies).FirstOrDefaultAsync();
+            return entities;
+        }
 
-        
-                
     }
 }

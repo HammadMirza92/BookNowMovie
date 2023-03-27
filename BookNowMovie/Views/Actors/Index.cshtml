@@ -11,6 +11,7 @@
                 <th>Profile Image</th>
                 <th>Actor Name</th>
                 <th>Bio</th>
+                <th>Movies</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -28,7 +29,12 @@
                 <td class="align-middle">
                         <p class="fn-actorBio">@item.Bio</p>
                 </td>
-
+                    <td class="align-middle">
+                       @foreach (var itm in @item.ActorMovies)
+                        {
+                            <p class="badges">@itm.MovieId</p>
+                        }
+                    </td>
                 <td class="align-middle">
                        
                     <a class="btn btn-primary actionBtn" onclick="showUserDetails(@item.Id)"> <i class="fa fa-edit actionBtnIcon"></i> Edit</a>

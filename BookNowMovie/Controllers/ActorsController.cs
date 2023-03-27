@@ -1,4 +1,6 @@
-﻿using BookNowMovie.Models;
+﻿using AutoMapper;
+using BookNowMovie.Models;
+using BookNowMovie.Models.Dto;
 using BookNowMovie.Services.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,13 +9,16 @@ namespace BookNowMovie.Controllers
     public class ActorsController : Controller
     {
         private readonly IActorRepository _actorRepository;
-        public ActorsController(IActorRepository actorRepository)
+        private readonly IMapper _mapper;
+        public ActorsController(IActorRepository actorRepository,IMapper mapper)
         {
             _actorRepository = actorRepository;
+            _mapper = mapper;
         }
         public async Task<IActionResult> Index()
         {
-            var allActors = await _actorRepository.GetAll();
+            var actors = await _actorRepository.GetAll();
+            var allActors = _mapper.Map<IEnumerable<ActorDto>>(actors);
             if (allActors == null)
             {
                 return View("NotFound");
@@ -53,7 +58,7 @@ namespace BookNowMovie.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Actor actor)
         {
-             _actorRepository.Update(actor);
+            await _actorRepository.Update(actor);
             return RedirectToAction("Index");
         }
 
