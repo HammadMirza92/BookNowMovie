@@ -9,6 +9,7 @@ namespace BookNowMovie.MappingProfiles
         public MappingProfiles()
         {
             CreateMap<Actor,ActorDto>().ReverseMap(); 
+            CreateMap<Movie,MovieDto>().ReverseMap(); 
         }
     }
 }

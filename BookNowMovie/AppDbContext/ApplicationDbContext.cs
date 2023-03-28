@@ -1,10 +1,11 @@
 ﻿using BookNowMovie.Enums;
 using BookNowMovie.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookNowMovie.AppDbContext
 {
-    public class ApplicationDbContext :DbContext
+    public class ApplicationDbContext :IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext>options):base(options)
         {
